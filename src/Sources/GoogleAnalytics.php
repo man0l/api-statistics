@@ -22,10 +22,12 @@ class GoogleAnalytics
             FROM `sources`
             WHERE YEAR(created_at) = YEAR(NOW())
             AND MONTH(created_at) = MONTH(NOW())
+            AND title = ?
             LIMIT 1
 EOF;
-        $result = $this->connection->query($sql);
-        $number = $result->fetch(\PDO::FETCH_ASSOC);
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([$this->title]);
+        $number = $stmt->fetch(\PDO::FETCH_ASSOC);
         return [$this->title => $number['visits']];
     }
 }
