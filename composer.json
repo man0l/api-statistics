@@ -11,5 +11,7 @@
             "email": "manol@passion4.tech"
         }
     ],
-    "require": {}
+    "require": {
+        "php": "^8"
+    }
 }
