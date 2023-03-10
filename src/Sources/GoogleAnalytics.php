@@ -2,7 +2,7 @@
 
 namespace App\Sources;
 
-class GoogleAnalytics
+class GoogleAnalytics implements SourceInterface
 {
     private \PDO $connection;
 

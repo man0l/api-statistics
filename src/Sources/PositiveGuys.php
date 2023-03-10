@@ -2,7 +2,7 @@
 
 namespace App\Sources;
 
-class PositiveGuys
+class PositiveGuys implements SourceInterface
 {
     private string $title = 'Positive Guys';
 
