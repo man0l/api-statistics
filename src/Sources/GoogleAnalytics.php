@@ -15,8 +15,17 @@ class GoogleAnalytics
 
     public function getData(): array
     {
-        $this->connection->query('SELECT 1');
-        $number = 150;
-        return [$this->title => $number];
+        $sql = /** @lang MySQL */
+            <<<EOF
+
+            SELECT SUM(visits) as visits
+            FROM `sources`
+            WHERE YEAR(created_at) = YEAR(NOW())
+            AND MONTH(created_at) = MONTH(NOW())
+            LIMIT 1
+EOF;
+        $result = $this->connection->query($sql);
+        $number = $result->fetch(\PDO::FETCH_ASSOC);
+        return [$this->title => $number['visits']];
     }
 }
