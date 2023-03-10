@@ -15,6 +15,7 @@ class App
 
     public function run(): void
     {
+        $this->applyHeaders();
 
         if (count($this->sources) === 0) {
             echo json_encode(value: [
@@ -48,5 +49,10 @@ class App
             ]);
         }
 
+    }
+
+    public function applyHeaders()
+    {
+        header('Content-Type: application/json');
     }
 }
