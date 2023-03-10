@@ -14,3 +14,14 @@ services:
     image: php:8-fpm
     volumes:
       - ./:/var/www/html
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_DATABASE: stats
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./sql/:/docker-entrypoint-initdb.d
